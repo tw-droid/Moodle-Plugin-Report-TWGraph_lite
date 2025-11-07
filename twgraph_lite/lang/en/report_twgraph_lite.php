@@ -25,3 +25,4 @@
 $string['graph_title'] = '{$a->first} {$a->last}';
 $string['no_data'] = 'No data found';
 $string['pluginname'] = 'TWGraph_Lite';
+$string['privacy:metadata'] = 'The TWGraph_Lite plugin does not store any personal data.';
