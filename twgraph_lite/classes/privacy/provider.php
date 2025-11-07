@@ -15,15 +15,27 @@
 // along with Moodle.  If not, see <http://www.gnu.org/licenses/>.
 
 /**
- * Version file.
+ * Provider file.
  *
  * @package report_twgraph_lite
  * @copyright 2025 Travis Wilhelm <https://traviswilhelm.com.au/>
  * @license    http://www.gnu.org/copyleft/gpl.html GNU GPL v3 or later
  * */
 
-defined('MOODLE_INTERNAL') || die();
+namespace report_twgraph_lite\privacy;
 
-$plugin->component = 'report_twgraph_lite';
-$plugin->version = 2025110700;
-$plugin->release = 'v1.1';
+/**
+ * Privacy provider for twgraph_lite
+ */
+class provider implements \core_privacy\local\metadata\null_provider {
+
+    /**
+     * Get the language string identifier with the component's language
+     * file to explain why this plugin stores no data.
+     *
+     * @return  string
+     */
+    public static function get_reason(): string {
+        return 'privacy:metadata';
+    }
+}

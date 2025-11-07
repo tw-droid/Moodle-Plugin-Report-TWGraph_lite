@@ -1,0 +1,31 @@
+<?xml version="1.0"?>
+<libraries>
+    <library>
+        <location>chartjs/chart.js</location>
+        <name>Chart.JS</name>
+        <version>4.5.0</version>
+        <license>MIT</license>
+        <licenseversion></licenseversion>
+    </library>
+    <library>
+        <location>chartjs/chartjs-plugin-zoom.js</location>
+        <name>chartjs-plugin-zoom</name>
+        <version>2.2.0</version>
+        <license>MIT</license>
+        <licenseversion></licenseversion>
+    </library>
+	<library>
+        <location>chartjs/chartjs-adapter-date-fns.min.js</location>
+        <name>chartjs-adapter-date-fns</name>
+        <version>3.0.0</version>
+        <license>MIT</license>
+        <licenseversion></licenseversion>
+    </library>
+	<library>
+        <location>chartjs/hammer.min.js</location>
+        <name>HammerJSS</name>
+        <version>2.0.8</version>
+        <license>MIT</license>
+        <licenseversion></licenseversion>
+    </library>
+</libraries>

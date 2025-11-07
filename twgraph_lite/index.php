@@ -15,6 +15,8 @@
 // along with Moodle.  If not, see <http://www.gnu.org/licenses/>.
 
 /**
+ * Display the graph.
+ *
  * @package report_twgraph_lite
  * @copyright 2025 Travis Wilhelm <https://traviswilhelm.com.au/>
  * @license    http://www.gnu.org/copyleft/gpl.html GNU GPL v3 or later
@@ -38,52 +40,41 @@ $PAGE->set_title($SITE->shortname . ": TW GRAPH Lite");
 
 echo $OUTPUT->header();
 
-if (!$userid)
-{
-	$userid = $USER->id; // Default to self if no user selected.
+if (!$userid) {
+    $userid = $USER->id; // Default to self if no user selected.
 }
 
 $user = core_user::get_user($userid , '*');
-print("<h2>" . $user->firstname . " " . $user->lastname . "</h2>");
+print("<h2>".get_string('graph_title', 'report_twgraph_lite', ['first' => $user->firstname, 'last' => $user->lastname])."</h2>");
 
-if ($courses = enrol_get_users_courses($userid , false , 'id, shortname, showgrades'))
-{
-    $datapoints = array();
-    
-    foreach ($courses as $course)
-    {
+if ($courses = enrol_get_users_courses($userid , false , 'id, shortname, showgrades')) {
+    $datapoints = [];
+    foreach ($courses as $course) {
         $coursecontext = context_course::instance($course->id);
-        $courseshortname = format_string($course->shortname , true , array('context' => $coursecontext));
-		$courseitem = grade_item::fetch_all(array('courseid' => $course->id));
-
-        foreach($courseitem as $ci)
-			{
-
-		    $coursegrade = new grade_grade(array('itemid' => $ci->id, 'userid' => $userid));
-		    if ($ci->itemtype=="mod") // Mod is individual assignments.
-				{
-				    $finalgrade = $coursegrade->finalgrade;
-				    $grademax = $ci->grademax;
-				    if ($finalgrade)
-				    {
-				    $dp = new data_point_lite();
+        $courseshortname = format_string($course->shortname , true , ['context' => $coursecontext]);
+        $courseitem = grade_item::fetch_all(['courseid' => $course->id]);
+        foreach ($courseitem as $ci) {
+            $coursegrade = new grade_grade(['itemid' => $ci->id, 'userid' => $userid]);
+            if ($ci->itemtype == "mod") { // Mod is individual assignments.
+                $finalgrade = $coursegrade->finalgrade;
+                $grademax = $ci->grademax;
+                if ($finalgrade) {
+                    $dp = new data_point_lite();
                     $dp->date = $coursegrade->timemodified;
-                    $dp->percent = round(($finalgrade/$grademax)*100, 1);
+                    $dp->percent = round(($finalgrade / $grademax) * 100, 1);
                     $dp->course = $course->fullname;
                     $dp->assignment = $ci->get_name();
                     $datapoints[] = $dp;
-				    }
-				}
-
+                }
             }
+        }
     }
-    
 }
 
 if ($datapoints) {
-  draw_graph($datapoints);
- } else  {
-  print("<p>No data found</p>");
- }
+    report_twgraph_lite_draw_graph($datapoints);
+} else {
+    print("<p>" . get_string('no_data', 'report_twgraph_lite') . "</p>");
+}
 
 echo $OUTPUT->footer();

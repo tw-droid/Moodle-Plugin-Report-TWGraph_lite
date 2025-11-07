@@ -15,10 +15,13 @@
 // along with Moodle.  If not, see <http://www.gnu.org/licenses/>.
 
 /**
+ * Language file.
+ *
  * @package report_twgraph_lite
  * @copyright 2025 Travis Wilhelm <https://traviswilhelm.com.au/>
  * @license    http://www.gnu.org/copyleft/gpl.html GNU GPL v3 or later
  * */
-  
- $string['pluginname'] = 'TWGraph_Lite';
- 
+
+$string['graph_title'] = '{$a->first} {$a->last}';
+$string['no_data'] = 'No data found';
+$string['pluginname'] = 'TWGraph_Lite';
