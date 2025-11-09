@@ -44,6 +44,18 @@ if (!$userid) {
     $userid = $USER->id; // Default to self if no user selected.
 }
 
+
+if ($USER->id == $userid) {
+        $context = context_user::instance($userid);
+        require_capability("report/twgraph_lite:viewuserreports", $context);
+    } else {
+        $context = context_user::instance($userid);
+        require_capability("report/twgraph_lite:viewotheruserreports", $context);
+    }
+
+
+
+
 $user = core_user::get_user($userid , '*');
 print("<h2>".get_string('graph_title', 'report_twgraph_lite', ['first' => $user->firstname, 'last' => $user->lastname])."</h2>");
 

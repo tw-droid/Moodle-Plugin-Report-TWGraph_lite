@@ -15,16 +15,26 @@
 // along with Moodle.  If not, see <http://www.gnu.org/licenses/>.
 
 /**
- * Language file.
+ * Settings
  *
  * @package report_twgraph_lite
  * @copyright 2025 Travis Wilhelm <https://traviswilhelm.com.au/>
  * @license    http://www.gnu.org/copyleft/gpl.html GNU GPL v3 or later
  * */
+ 
+defined('MOODLE_INTERNAL') || die;
 
-$string['graph_title'] = '{$a->first} {$a->last}';
-$string['no_data'] = 'No data found';
-$string['pluginname'] = 'TWGraph_Lite';
-$string['privacy:metadata'] = 'The TWGraph_Lite plugin does not store any personal data.';
-$string['twgraph_lite:viewotheruserreports'] = 'View other peoples twgraph reports';
-$string['twgraph_lite:viewuserreports'] = 'View own twgraph report';
+// Define the setting name (e.g., 'local_myplugin/myinteger_setting')
+$settingname = 'twgraph_lite/dotsize';
+
+// Instantiate admin_setting_configtext
+$setting = new admin_setting_configtext(
+    $settingname,
+    get_string('dotsizetitle', 'twgraph_lite'), // Title for the setting
+    get_string('dotsizedescription', 'twgraph_lite'), // Description
+    10, // Default value (an integer)
+    PARAM_INT // Data type validation: ensures it's an integer
+);
+
+// Add the setting to the Moodle administration tree
+$ADMIN->add('localplugins', $setting);

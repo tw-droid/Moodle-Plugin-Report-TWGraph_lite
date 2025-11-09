@@ -125,7 +125,7 @@ const ctx = document.getElementById('myChart');
             print("\n{assignment: \"".$y['assignment']."\", x: '".date("Y-m-d", $y['x'])."', y: ".$y['y']." , r: 10  }");
             $ac++;
         }
-        print("],}");
+        print("], }");
         $sc++;
     }
     ?>
@@ -155,7 +155,8 @@ const ctx = document.getElementById('myChart');
     },
       scales: {
         y: {
-          beginAtZero: true
+          beginAtZero: true,
+          suggestedMax: 100
         }
         ,x: {
         type: 'time',
