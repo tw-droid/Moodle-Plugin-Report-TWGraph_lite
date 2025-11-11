@@ -22,7 +22,12 @@
  * @license    http://www.gnu.org/copyleft/gpl.html GNU GPL v3 or later
  * */
 
+$string['dotsizedescription'] = 'Dot size in pixels';
+$string['dotsizetitle'] = 'Dot size';
 $string['graph_title'] = '{$a->first} {$a->last}';
+$string['graphinstructions'] = 'Scroll wheel to zoom, click and drag to pan horizontally';
+$string['graphresetzoom'] = 'reset zoom';
+$string['graphtoggleall'] = 'toggle all';
 $string['no_data'] = 'No data found';
 $string['pluginname'] = 'TWGraph_Lite';
 $string['privacy:metadata'] = 'The TWGraph_Lite plugin does not store any personal data.';

@@ -110,6 +110,7 @@ const ctx = document.getElementById('myChart');
     data: {
       datasets: [
     <?php
+    $dotsize = get_config('reports_twgraph_lite', 'dotsize');
     $sc = 0;
     foreach ($datapoints as $key) { // Each subject.
         if ($sc > 0) {
@@ -122,7 +123,7 @@ const ctx = document.getElementById('myChart');
             if ($ac > 0) {
                 print(",");
             }
-            print("\n{assignment: \"".$y['assignment']."\", x: '".date("Y-m-d", $y['x'])."', y: ".$y['y']." , r: 10  }");
+            print("\n{assignment: \"".$y['assignment']."\", x: '".date("Y-m-d", $y['x'])."', y: ".$y['y']." , r: ".$dotsize."  }");
             $ac++;
         }
         print("], }");
@@ -177,9 +178,10 @@ function report_twgraph_lite_resetZoomBtn() {
     mc.resetZoom()
 };
 </script>
-<button id="toggle" onClick="report_twgraph_lite_toggle();">toggle all</button>
-<button id="toggle" onClick="report_twgraph_lite_resetZoomBtn();">reset zoom</button>
-<h5>Scroll wheel to zoom, click and drag to pan horizontally</h5>
-
     <?php
+    print("<button id=\"toggle\" onClick=\"report_twgraph_lite_toggle();\">"
+    .get_string('graphtoggleall', 'report_twgraph_lite')."</button>");
+    print("<button onClick=\"report_twgraph_lite_resetZoomBtn();\">"
+    .get_string('graphresetzoom', 'report_twgraph_lite')."</button>");
+    print("<h5>".get_string('graphinstructions', 'report_twgraph_lite')."</h5>");
 }
